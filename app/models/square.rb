@@ -5,8 +5,8 @@ class Square
   def initialize row, column
     @row = row
     @column = column
-    if starting_white then @color = 'white'
-    if starting_black then @color = 'black'
+    if starting_white then @color = 'white' end
+    if starting_black then @color = 'black' end
   end
 
   def place_piece color
