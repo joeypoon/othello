@@ -1,3 +1,8 @@
-<div class="container" ng-controller="BoardController">
-  <board></board>
+<div ng-controller="BoardController" class="board">
+  <% (1..8).each do |r| %>
+    <% (1..8).each do |c| %>
+      <square row="'<%= r %>'" column="'<%= c %>'" turn="turn" ng-click="changeTurn()"></square>
+    <% end %>
+    <div class="clearfix"></div>
+  <% end %>
 </div>

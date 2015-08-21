@@ -3,10 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .square {
-  border: darken(#2980B9, 10%) solid 1px;
-  background-color: #2980B9;
+  border: darken(#27AE60, 10%) solid 1px;
+  background-color: #27AE60;
   height: 5em;
   width: 5em;
+  float: left;
 }
 
 .black {

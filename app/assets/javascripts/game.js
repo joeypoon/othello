@@ -1,15 +1,13 @@
 Othello = angular.module('othello', ['templates']);
 
 Othello.controller("BoardController", function($scope) {
-});
-
-Othello.controller("SquareController", function($scope) {
-});
-
-Othello.directive("board", function() {
-  return {
-    restrict: 'E',
-    templateUrl: "templates/board.html.erb",
+  $scope.turn = 'black';
+  $scope.changeTurn = function() {
+    if ($scope.turn === 'black') {
+      $scope.turn = 'white'
+    } else {
+      $scope.turn = 'black'
+    }
   }
 });
 
@@ -17,10 +15,21 @@ Othello.directive("square", function() {
   return {
     restrict: 'E',
     templateUrl: "templates/square.html.erb",
+    scope: {
+      row: '=',
+      column: '=',
+      turn: '='
+    },
     controller: function($scope) {
-      $scope.black = false;
-      $scope.white = false;
-      $scope.empty = false;
+      $scope.placePiece = function() {
+        if ($scope.turn === 'black') {
+          $scope.black = true;
+          $scope.white = false;
+        } else {
+          $scope.black = false;
+          $scope.white = true;
+        }
+      }
     }
   };
 });
