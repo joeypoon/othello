@@ -13,7 +13,7 @@ Othello.directive('board', function() {
     scope: {
       board: '='
     },
-    controller: function($scope) {
+    controller: ['$scope', function($scope) {
       $scope.turn = 'black';
       $scope.changeTurn = function() {
         if ($scope.turn == 'black') {
@@ -22,7 +22,7 @@ Othello.directive('board', function() {
           $scope.turn = 'black'
         }
       }
-    }
+    }]
   }
 });
 
@@ -47,7 +47,7 @@ Othello.directive('square', function() {
       color: '@',
       turn: '@'
     },
-    controller: function($scope) {
+    controller: ['$scope', function($scope) {
       $scope.placePiece = function() {
         $scope.color = $scope.turn;
       }
@@ -58,7 +58,7 @@ Othello.directive('square', function() {
           $scope.color = 'black'
         }
       }
-    }
+    }]
   }
 });
 
