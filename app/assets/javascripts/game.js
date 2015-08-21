@@ -14,7 +14,14 @@ Othello.directive('board', function() {
       board: '='
     },
     controller: function($scope) {
-
+      $scope.turn = 'black';
+      $scope.changeTurn = function() {
+        if ($scope.turn == 'black') {
+          $scope.turn = 'white'
+        } else {
+          $scope.turn = 'black'
+        }
+      }
     }
   }
 });
@@ -25,7 +32,7 @@ Othello.directive('row', function() {
     templateUrl: 'templates/row.html',
     scope: {
       row: '=',
-      turn: '@'
+      turn: '='
     }
   }
 });
@@ -38,19 +45,11 @@ Othello.directive('square', function() {
       row: '@',
       column: '@',
       color: '@',
+      turn: '@'
     },
     controller: function($scope) {
-      $scope.turn = 'black';
-      $scope.changeTurn = function() {
-        if ($scope.turn == 'black') {
-          $scope.turn = 'white'
-        } else {
-          $scope.turn = 'black'
-        }
-      }
       $scope.placePiece = function() {
         $scope.color = $scope.turn;
-        $scope.changeTurn();
       }
       $scope.changeColor = function() {
         if ($scope.color == 'black') {
