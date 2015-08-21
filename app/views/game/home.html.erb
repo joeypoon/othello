@@ -1,8 +1,4 @@
 <div ng-controller="BoardController" class="board">
-  <% (1..8).each do |r| %>
-    <% (1..8).each do |c| %>
-      <square row="'<%= r %>'" column="'<%= c %>'" turn="turn" ng-click="changeTurn()"></square>
-    <% end %>
-    <div class="clearfix"></div>
-  <% end %>
+  <h1 class="page-header">Othello <small></small></h1>
+  <board board="board"></board>
 </div>
