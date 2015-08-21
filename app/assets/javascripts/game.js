@@ -1,10 +1,10 @@
 Othello = angular.module('othello', ['templates']);
 
-Othello.controller('BoardController', function($scope) {
+Othello.controller('BoardController', ['$scope', function($scope) {
   var board = new Board();
   board.initializeBoard();
   $scope.board = board;
-});
+}]);
 
 Othello.directive('board', function() {
   return {
