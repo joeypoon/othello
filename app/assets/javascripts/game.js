@@ -2,8 +2,8 @@ Othello = angular.module('othello', ['templates']);
 
 Othello.controller('BoardController', ['$scope', function($scope) {
   var board = new Board();
-  board.initializeBoard();
-  $scope.board = board;
+  $scope.board = board.initialize();
+  $scope.turn = 'black';
 }]);
 
 Othello.directive('board', function() {
@@ -11,10 +11,10 @@ Othello.directive('board', function() {
     restrict: 'E',
     templateUrl: 'templates/board.html',
     scope: {
-      board: '='
+      board: '=',
+      turn: '='
     },
     controller: ['$scope', function($scope) {
-      $scope.turn = 'black';
       $scope.changeTurn = function() {
         if ($scope.turn == 'black') {
           $scope.turn = 'white'
@@ -26,37 +26,21 @@ Othello.directive('board', function() {
   }
 });
 
-Othello.directive('row', function() {
-  return {
-    restrict: 'E',
-    templateUrl: 'templates/row.html',
-    scope: {
-      row: '=',
-      turn: '='
-    }
-  }
-});
-
 Othello.directive('square', function() {
   return {
     restrict: 'E',
     templateUrl: 'templates/square.html',
     scope: {
+      board: '=',
+      turn: '=',
       row: '@',
       column: '@',
-      color: '@',
-      turn: '@'
+      color: '@'
     },
     controller: ['$scope', function($scope) {
+      $scope.square = $scope.board.rows[$scope.row - 1][$scope.column - 1];
       $scope.placePiece = function() {
-        $scope.color = $scope.turn;
-      }
-      $scope.changeColor = function() {
-        if ($scope.color == 'black') {
-          $scope.color = 'white'
-        } else {
-          $scope.color = 'black'
-        }
+        $scope.square.color = $scope.turn;
       }
     }]
   }
@@ -64,7 +48,7 @@ Othello.directive('square', function() {
 
 function Board() {
   this.rows = [];
-  this.initializeBoard = function() {
+  this.initialize = function() {
     for(var r = 1; r <= 8; r++) {
       var row = [];
       for(var c = 1; c <= 8; c++) {
@@ -72,6 +56,7 @@ function Board() {
       }
       this.rows.push(row);
     }
+    return this
   }
 }
 

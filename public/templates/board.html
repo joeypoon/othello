@@ -1,3 +1,10 @@
 <div ng-repeat="row in board.rows" ng-click="changeTurn()">
-  <row row="row" turn="turn"></row>
+  <div ng-repeat="square in row">
+    <square board="board"
+            turn="turn"
+            row={{square.row}}
+            column={{square.column}}
+            color={{square.color}}></square>
+  </div>
+  <div class="clearfix"></div>
 </div>
